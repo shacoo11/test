@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background-image: url('shaco.jpg'); /* Arka plan resmi */
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1 {
+            color: white;
+            font-size: 4em;
+            text-shadow: 2px 2px 5px black;
+        }
+
+        /* Butonun stili */
+        .play-button {
+            padding: 15px 30px;
+            font-size: 20px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+            .play-button:hover {
+                background-color: #218838;
+            }
+
+        /* Müziğin gözükmesini engelle */
+        audio {
+            display: none;
+        }
+
+        /* Daktilo efekti için yazı alanı */
+        #typewriter {
+            color: white;
+            font-size: 1.5em;
+            text-shadow: 2px 2px 5px black;
+            margin-top: 20px;
+            max-width: 80%;
+            text-align: center;
+            white-space: pre-wrap; /* Yazı yeni satıra geçsin */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Giriş Başarılı Mesajı -->
+    <h1>CODER.BY EFFE190S</h1>
+
+    <!-- Şarkıyı Başlatan Buton -->
+    <button class="play-button" id="playButton">Şarkıyı Başlat</button>
+
+    <!-- Daktilo efektiyle yazı yazılacak alan -->
+    <div id="typewriter"></div>
+
+    <!-- Sayfa açıldığında çalan müzik -->
+    <audio id="myAudio" loop>
+        <source src="sarki.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Daktilo efektiyle yazı yazdıran fonksiyon
+        function typeWriter(text, element, delay) {
+            let i = 0;
+            function typing() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(typing, delay);
+                }
+            }
+            typing();
+        }
+
+        // Butona tıklandığında şarkıyı başlat, butonu gizle ve daktilo efektini çalıştır
+        document.getElementById('playButton').addEventListener('click', function () {
+            var audio = document.getElementById('myAudio');
+            audio.play();
+
+            // Butonu gizle
+            this.style.display = 'none';
+
+            // Daktilo efektiyle yazdırılacak yazı
+            var text = "Ben Shaco, bu siteyi kodlamak 1 saatimi aldı almadı, neyse burdan Mert'in ayaklarına benim küçük W skilim girsin. Buradan Mert'in tüm sevdiği sevmediği insanların ben taaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa HELLELELELELELLELELEEEL YAPAYIM ZATEN ANCA LEBLANC AL BAŞKA BİR HERO OYNAYAMIYORSUN PUAHHAHAHAHAHAHAHAHAHHAHAHAHAHAHHAHA ENAYİ MERDOOOOOOOO ";
+
+            // Yazıyı daktilo efektiyle yazdır
+            var typewriterElement = document.getElementById('typewriter');
+            typeWriter(text, typewriterElement, 100); // 100 ms gecikme ile yazı yazılıyor
+        });
+    </script>
+
+</body>
+</html>
